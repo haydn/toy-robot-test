@@ -1,0 +1,20 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "rules": {
+    "array-bracket-spacing": [2, "never"],
+    "comma-spacing": [2, { "before": false, "after": true }],
+    "no-redeclare": 2,
+    "no-unused-vars": 2,
+    "no-undef": 2,
+    "quotes": [2, "single", "avoid-escape"],
+    "semi": [2, "always"],
+    "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
+    "vars-on-top": 2
+  }
+}
