@@ -18,13 +18,13 @@ export default class Runner {
 
       let output = [];
 
-      orders.split('\n').map(x => x.trim()).forEach(order => {
+      orders.split('\n').forEach(order => {
 
-        let [type, data] = order.split(' ').map(x => x.trim());
+        let [type, options] = this._parseOrder(order);
 
-        switch (type.toUpperCase()) {
+        switch (type) {
           case 'PLACE':
-            let [x, y, facing] = (data || '').split(',');
+            let [x, y, facing] = options;
             this._robot.place(new Position(x, y, facing));
             break;
           case 'MOVE':
@@ -37,10 +37,14 @@ export default class Runner {
             this._robot.right();
             break;
           case 'REPORT':
-            output.push(this._robot.position.report());
+            if (this._robot.position) {
+              output.push(this._robot.position.report());
+            }
+            break;
+          case '':
             break;
           default:
-            console.log('Unknown order:', type);
+            throw new Error('Unknown order:', type);
         }
 
       });
@@ -48,6 +52,26 @@ export default class Runner {
       callback(output.join('\n'));
 
     });
+
+  }
+
+  _parseOrder(order) {
+
+    order = order.trim().toUpperCase();
+
+    let index = order.indexOf(' ');
+
+    if (index === -1) {
+      return [
+        order,
+        []
+      ];
+    } else {
+      return [
+        order.slice(0, index).trim(),
+        order.slice(index).trim().split(',').map(x => x.trim())
+      ];
+    }
 
   }
 

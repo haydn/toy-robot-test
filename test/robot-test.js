@@ -49,6 +49,19 @@ test('Robot#left must rotate the robot left', t => {
 
 });
 
+test("Robot#left most do nothing if the robot doesn't have a position", t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+
+  t.plan(1);
+
+  t.doesNotThrow(() => {
+    robot.left();
+  });
+
+});
+
 test('Robot#move must move the robot unless the new position is invalid', t => {
 
   let table = new Table(3, 3);
@@ -96,6 +109,19 @@ test('Robot#place must be ignored if the given position is not valid', t => {
 
 });
 
+test("Robot#move most do nothing if the robot doesn't have a position", t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+
+  t.plan(1);
+
+  t.doesNotThrow(() => {
+    robot.move();
+  });
+
+});
+
 test('Robot#right must rotate the robot right', t => {
 
   let table = new Table(3, 3);
@@ -121,5 +147,18 @@ test('Robot#right must rotate the robot right', t => {
   robot.right();
 
   t.equals(robot.position.facing, Position.NORTH);
+
+});
+
+test("Robot#right most do nothing if the robot doesn't have a position", t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+
+  t.plan(1);
+
+  t.doesNotThrow(() => {
+    robot.right();
+  });
 
 });

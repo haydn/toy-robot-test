@@ -10,15 +10,21 @@ export default class Robot {
   }
 
   left() {
-    this._position = this._position.left();
+    if (this._position) {
+      this._position = this._position.left();
+    }
   }
 
   move() {
 
-    let newPosition = this._position.forward();
+    if (this._position) {
 
-    if (this._table.isValid(newPosition)) {
-      this._position = newPosition;
+      let newPosition = this._position.forward();
+
+      if (this._table.isValid(newPosition)) {
+        this._position = newPosition;
+      }
+
     }
 
   }
@@ -30,7 +36,9 @@ export default class Robot {
   }
 
   right() {
-    this._position = this._position.right();
+    if (this._position) {
+      this._position = this._position.right();
+    }
   }
 
 }

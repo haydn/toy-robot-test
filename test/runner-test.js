@@ -38,6 +38,30 @@ test('Runner#exec must read PLACE, MOVE, LEFT and REPORT orders from a file and 
 
 });
 
+test('Runner#exec must ignore orders that would put the robot in an invalid position', t => {
+
+  let runner = new Runner();
+
+  t.plan(1);
+
+  runner.exec(path.join(__dirname, 'resources/invalid.txt'), output => {
+    t.equals(output.trim(), '4,4,NORTH');
+  });
+
+});
+
+test('Runner#exec must ignore any orders that come before the first PLACE order', t => {
+
+  let runner = new Runner();
+
+  t.plan(1);
+
+  runner.exec(path.join(__dirname, 'resources/preplace.txt'), output => {
+    t.equals(output.trim(), '1,1,NORTH');
+  });
+
+});
+
 test('Runner#exec must read repeated orders from a file and output the results', t => {
 
   let runner = new Runner();
@@ -49,3 +73,17 @@ test('Runner#exec must read repeated orders from a file and output the results',
   });
 
 });
+
+test('Runner#exec must handle extra whitespace', t => {
+
+  let runner = new Runner();
+
+  t.plan(1);
+
+  runner.exec(path.join(__dirname, 'resources/whitespace.txt'), output => {
+    t.equals(output.trim(), '3,1,EAST');
+  });
+
+});
+
+// TODO: throw an error if an order is unknown
