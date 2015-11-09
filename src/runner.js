@@ -27,6 +27,9 @@ export default class Runner {
             let [x, y, facing] = (data || '').split(',');
             this._robot.place(new Position(x, y, facing));
             break;
+          case 'MOVE':
+            this._robot.move();
+            break;
           case 'REPORT':
             output.push(this._robot.position.report());
             break;

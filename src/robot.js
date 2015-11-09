@@ -9,6 +9,16 @@ export default class Robot {
     return this._position;
   }
 
+  move() {
+
+    let newPosition = this._position.forward();
+
+    if (this._table.isValid(newPosition)) {
+      this._position = newPosition;
+    }
+
+  }
+
   place(position) {
     if (this._table.isValid(position)) {
       this._position = position;

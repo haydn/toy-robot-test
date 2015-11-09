@@ -38,6 +38,20 @@ export default class Position {
     return this._facing;
   }
 
+  forward() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y + 1, this._facing);
+      case Position.EAST:
+        return new Position(this._x + 1, this._y, this._facing);
+      case Position.SOUTH:
+        return new Position(this._x, this._y - 1, this._facing);
+      case Position.WEST:
+        return new Position(this._x - 1, this._y, this._facing);
+      default:
+    }
+  }
+
   report() {
     return [this._x, this._y, this._facing.toUpperCase()].join(',');
   }

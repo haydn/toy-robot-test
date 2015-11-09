@@ -24,6 +24,29 @@ test('Position must have x, y and facing properties', t => {
 
 });
 
+test('Position#forward return new position in front of the current position', t => {
+
+  let positionA = (new Position(1, 2, Position.NORTH)).forward();
+  let positionB = (new Position(1, 2, Position.EAST)).forward();
+  let positionC = (new Position(1, 2, Position.SOUTH)).forward();
+  let positionD = (new Position(1, 2, Position.WEST)).forward();
+
+  t.plan(8);
+
+  t.equals(positionA.x, 1);
+  t.equals(positionA.y, 3);
+
+  t.equals(positionB.x, 2);
+  t.equals(positionB.y, 2);
+
+  t.equals(positionC.x, 1);
+  t.equals(positionC.y, 1);
+
+  t.equals(positionD.x, 0);
+  t.equals(positionD.y, 2);
+
+});
+
 test('Position#report must return a string representing the position', t => {
 
   let position = new Position(3, 4, Position.NORTH);
