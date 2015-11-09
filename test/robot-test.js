@@ -21,6 +21,34 @@ test('Robot have a position property that is null by default and a position afte
 
 });
 
+test('Robot#left must rotate the robot left', t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+  let startPosition = new Position(1, 1, Position.NORTH);
+
+  t.plan(4);
+
+  robot.place(startPosition);
+
+  robot.left();
+
+  t.equals(robot.position.facing, Position.WEST);
+
+  robot.left();
+
+  t.equals(robot.position.facing, Position.SOUTH);
+
+  robot.left();
+
+  t.equals(robot.position.facing, Position.EAST);
+
+  robot.left();
+
+  t.equals(robot.position.facing, Position.NORTH);
+
+});
+
 test('Robot#move must move the robot unless the new position is invalid', t => {
 
   let table = new Table(3, 3);
@@ -65,5 +93,33 @@ test('Robot#place must be ignored if the given position is not valid', t => {
 
   t.equals(robot.position.x, 1);
   t.equals(robot.position.y, 1);
+
+});
+
+test('Robot#right must rotate the robot right', t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+  let startPosition = new Position(1, 1, Position.NORTH);
+
+  t.plan(4);
+
+  robot.place(startPosition);
+
+  robot.right();
+
+  t.equals(robot.position.facing, Position.EAST);
+
+  robot.right();
+
+  t.equals(robot.position.facing, Position.SOUTH);
+
+  robot.right();
+
+  t.equals(robot.position.facing, Position.WEST);
+
+  robot.right();
+
+  t.equals(robot.position.facing, Position.NORTH);
 
 });

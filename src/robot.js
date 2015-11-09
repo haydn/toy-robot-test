@@ -9,6 +9,10 @@ export default class Robot {
     return this._position;
   }
 
+  left() {
+    this._position = this._position.left();
+  }
+
   move() {
 
     let newPosition = this._position.forward();
@@ -23,6 +27,10 @@ export default class Robot {
     if (this._table.isValid(position)) {
       this._position = position;
     }
+  }
+
+  right() {
+    this._position = this._position.right();
   }
 
 }

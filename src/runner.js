@@ -30,6 +30,12 @@ export default class Runner {
           case 'MOVE':
             this._robot.move();
             break;
+          case 'LEFT':
+            this._robot.left();
+            break;
+          case 'RIGHT':
+            this._robot.right();
+            break;
           case 'REPORT':
             output.push(this._robot.position.report());
             break;

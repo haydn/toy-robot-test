@@ -52,8 +52,36 @@ export default class Position {
     }
   }
 
+  left() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y, Position.WEST);
+      case Position.EAST:
+        return new Position(this._x, this._y, Position.NORTH);
+      case Position.SOUTH:
+        return new Position(this._x, this._y, Position.EAST);
+      case Position.WEST:
+        return new Position(this._x, this._y, Position.SOUTH);
+      default:
+    }
+  }
+
   report() {
     return [this._x, this._y, this._facing.toUpperCase()].join(',');
+  }
+
+  right() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y, Position.EAST);
+      case Position.EAST:
+        return new Position(this._x, this._y, Position.SOUTH);
+      case Position.SOUTH:
+        return new Position(this._x, this._y, Position.WEST);
+      case Position.WEST:
+        return new Position(this._x, this._y, Position.NORTH);
+      default:
+    }
   }
 
 }

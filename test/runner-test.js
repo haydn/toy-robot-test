@@ -26,17 +26,25 @@ test('Runner#exec must read PLACE, MOVE and REPORT orders from a file and output
 
 });
 
-test.skip('Runner#exec must read orders from a file, pass them on to the robot and output the results', t => {
+test('Runner#exec must read PLACE, MOVE, LEFT and REPORT orders from a file and output the results', t => {
 
   let runner = new Runner();
 
-  t.plan(3);
+  t.plan(1);
 
-  runner.exec(path.join(__dirname, 'resources/b.txt'), output => {
+  runner.exec(path.join(__dirname, 'resources/left.txt'), output => {
     t.equals(output.trim(), '0,0,WEST');
   });
 
-  runner.exec(path.join(__dirname, 'resources/c.txt'), output => {
+});
+
+test('Runner#exec must read repeated orders from a file and output the results', t => {
+
+  let runner = new Runner();
+
+  t.plan(1);
+
+  runner.exec(path.join(__dirname, 'resources/repeats.txt'), output => {
     t.equals(output.trim(), '3,3,NORTH');
   });
 

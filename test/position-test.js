@@ -24,7 +24,7 @@ test('Position must have x, y and facing properties', t => {
 
 });
 
-test('Position#forward return new position in front of the current position', t => {
+test('Position#forward must return new position in front of the current position', t => {
 
   let positionA = (new Position(1, 2, Position.NORTH)).forward();
   let positionB = (new Position(1, 2, Position.EAST)).forward();
@@ -47,6 +47,22 @@ test('Position#forward return new position in front of the current position', t 
 
 });
 
+test('Position#left must return new position rotated to the left', t => {
+
+  let positionA = (new Position(0, 0, Position.NORTH)).left();
+  let positionB = (new Position(0, 0, Position.EAST)).left();
+  let positionC = (new Position(0, 0, Position.SOUTH)).left();
+  let positionD = (new Position(0, 0, Position.WEST)).left();
+
+  t.plan(4);
+
+  t.equals(positionA.facing, Position.WEST);
+  t.equals(positionB.facing, Position.NORTH);
+  t.equals(positionC.facing, Position.EAST);
+  t.equals(positionD.facing, Position.SOUTH);
+
+});
+
 test('Position#report must return a string representing the position', t => {
 
   let position = new Position(3, 4, Position.NORTH);
@@ -54,6 +70,22 @@ test('Position#report must return a string representing the position', t => {
   t.plan(1);
 
   t.equals(position.report(), '3,4,NORTH');
+
+});
+
+test('Position#right must return new position rotated to the right', t => {
+
+  let positionA = (new Position(0, 0, Position.NORTH)).right();
+  let positionB = (new Position(0, 0, Position.EAST)).right();
+  let positionC = (new Position(0, 0, Position.SOUTH)).right();
+  let positionD = (new Position(0, 0, Position.WEST)).right();
+
+  t.plan(4);
+
+  t.equals(positionA.facing, Position.EAST);
+  t.equals(positionB.facing, Position.SOUTH);
+  t.equals(positionC.facing, Position.WEST);
+  t.equals(positionD.facing, Position.NORTH);
 
 });
 
