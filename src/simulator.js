@@ -2,7 +2,7 @@ import Position from './position';
 import Robot from './robot';
 import Table from './table';
 
-export default class Runner {
+export default class Simulator {
 
   constructor() {
     this._table = new Table(5, 5);

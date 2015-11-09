@@ -1,16 +1,16 @@
 import fs from 'fs';
-import Runner from './src/runner';
+import Simulator from './src/simulator';
 
 let file = process.argv[2];
 
 if (file) {
 
-  let runner = new Runner();
+  let simulator = new Simulator();
 
   fs.readFile(file, 'utf8', (err, orders) => {
     let output = orders
       .split('\n')
-      .map(order => runner.exec(order))
+      .map(order => simulator.exec(order))
       .filter(x => x)
       .join('\n');
     console.log(output)
