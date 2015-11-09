@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Node (tested in v0.12.7)
+- Node (tested with v0.12.7)
 - NPM (tested with v2.11.3)
 
 ## Getting Started
@@ -10,6 +10,8 @@
 Install dependencies:
 
 ```
+git clone git@github.com:haydn/toy-robot-test.git
+cd toy-robot-test
 npm install
 ```
 
