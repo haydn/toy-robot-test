@@ -1,40 +1,38 @@
 import test from 'tape';
-import path from 'path';
 import Runner from '../src/runner';
 
-test('Runner#exec must read PLACE and REPORT orders from a file and output the results', t => {
+test('Runner#exec must handle PLACE and REPORT orders', t => {
 
   let runner = new Runner();
 
   t.plan(1);
 
-  runner.exec(path.join(__dirname, 'resources/basic.txt'), output => {
-    t.equals(output.trim(), '1,1,NORTH');
-  });
+  runner.exec('PLACE 1,1,NORTH');
+  t.equals(runner.exec('REPORT'), '1,1,NORTH');
 
 });
 
-test('Runner#exec must read PLACE, MOVE and REPORT orders from a file and output the results', t => {
+test('Runner#exec must handle PLACE, MOVE and REPORT orders', t => {
 
   let runner = new Runner();
 
   t.plan(1);
 
-  runner.exec(path.join(__dirname, 'resources/move.txt'), output => {
-    t.equals(output.trim(), '0,1,NORTH');
-  });
+  runner.exec('PLACE 0,0,NORTH');
+  runner.exec('MOVE');
+  t.equals(runner.exec('REPORT'), '0,1,NORTH');
 
 });
 
-test('Runner#exec must read PLACE, MOVE, LEFT and REPORT orders from a file and output the results', t => {
+test('Runner#exec must handle PLACE, MOVE, LEFT and REPORT orders', t => {
 
   let runner = new Runner();
 
   t.plan(1);
 
-  runner.exec(path.join(__dirname, 'resources/left.txt'), output => {
-    t.equals(output.trim(), '0,0,WEST');
-  });
+  runner.exec('PLACE 0,0,NORTH');
+  runner.exec('LEFT');
+  t.equals(runner.exec('REPORT'), '0,0,WEST');
 
 });
 
@@ -44,9 +42,14 @@ test('Runner#exec must ignore orders that would put the robot in an invalid posi
 
   t.plan(1);
 
-  runner.exec(path.join(__dirname, 'resources/invalid.txt'), output => {
-    t.equals(output.trim(), '4,4,NORTH');
-  });
+  runner.exec('PLACE 4,4,NORTH');
+  runner.exec('MOVE');
+  runner.exec('MOVE');
+  runner.exec('RIGHT');
+  runner.exec('MOVE');
+  runner.exec('MOVE');
+  runner.exec('LEFT');
+  t.equals(runner.exec('REPORT'), '4,4,NORTH');
 
 });
 
@@ -54,23 +57,32 @@ test('Runner#exec must ignore any orders that come before the first PLACE order'
 
   let runner = new Runner();
 
-  t.plan(1);
+  t.plan(2);
 
-  runner.exec(path.join(__dirname, 'resources/preplace.txt'), output => {
-    t.equals(output.trim(), '1,1,NORTH');
-  });
+  runner.exec('MOVE');
+  runner.exec('LEFT');
+  t.equals(runner.exec('REPORT'), '');
+  runner.exec('PLACE 1,1,NORTH');
+  t.equals(runner.exec('REPORT'), '1,1,NORTH');
 
 });
 
-test('Runner#exec must read repeated orders from a file and output the results', t => {
+test('Runner#exec must be case insensitive', t => {
 
   let runner = new Runner();
 
-  t.plan(1);
+  t.plan(2);
 
-  runner.exec(path.join(__dirname, 'resources/repeats.txt'), output => {
-    t.equals(output.trim(), '3,3,NORTH');
-  });
+  runner.exec('place 0,0,north');
+  runner.exec('move');
+  runner.exec('right');
+  runner.exec('RIGHT');
+  runner.exec('MOVE');
+  runner.exec('LEFT');
+  runner.exec('left');
+  t.equals(runner.exec('report'), '0,0,NORTH');
+  runner.exec('place 0,0,north');
+  t.equals(runner.exec('REPORT'), '0,0,NORTH');
 
 });
 
@@ -78,12 +90,29 @@ test('Runner#exec must handle extra whitespace', t => {
 
   let runner = new Runner();
 
-  t.plan(1);
+  t.plan(2);
 
-  runner.exec(path.join(__dirname, 'resources/whitespace.txt'), output => {
-    t.equals(output.trim(), '3,1,EAST');
-  });
+  runner.exec('PLACE 2, 2 ,WEST');
+  runner.exec(' MOVE');
+  runner.exec('LEFT');
+  runner.exec('REPORT ');
+  t.equals(runner.exec('REPORT'), '1,2,SOUTH');
+  runner.exec('PLACE 1 , 1 ,NORTH');
+  runner.exec(' RIGHT');
+  runner.exec(' MOVE ');
+  runner.exec(' MOVE');
+  t.equals(runner.exec('REPORT'), '3,1,EAST');
 
 });
 
-// TODO: throw an error if an order is unknown
+test('Runner#exec must throw an error if an unknown order is given', t => {
+
+  let runner = new Runner();
+
+  t.plan(1);
+
+  t.throws(() => {
+    runner.exec('BLAH');
+  });
+
+});

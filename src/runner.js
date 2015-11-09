@@ -1,6 +1,3 @@
-/*eslint no-console: 0*/
-
-import fs from 'fs';
 import Position from './position';
 import Robot from './robot';
 import Table from './table';
@@ -12,46 +9,37 @@ export default class Runner {
     this._robot = new Robot(this._table);
   }
 
-  exec(file, callback) {
+  exec(order) {
 
-    fs.readFile(file, 'utf8', (err, orders) => {
+    let [type, options] = this._parseOrder(order);
+    let output = '';
 
-      let output = [];
-
-      orders.split('\n').forEach(order => {
-
-        let [type, options] = this._parseOrder(order);
-
-        switch (type) {
-          case 'PLACE':
-            let [x, y, facing] = options;
-            this._robot.place(new Position(x, y, facing));
-            break;
-          case 'MOVE':
-            this._robot.move();
-            break;
-          case 'LEFT':
-            this._robot.left();
-            break;
-          case 'RIGHT':
-            this._robot.right();
-            break;
-          case 'REPORT':
-            if (this._robot.position) {
-              output.push(this._robot.position.report());
-            }
-            break;
-          case '':
-            break;
-          default:
-            throw new Error('Unknown order:', type);
+    switch (type) {
+      case 'PLACE':
+        let [x, y, facing] = options;
+        this._robot.place(new Position(x, y, facing));
+        break;
+      case 'MOVE':
+        this._robot.move();
+        break;
+      case 'LEFT':
+        this._robot.left();
+        break;
+      case 'RIGHT':
+        this._robot.right();
+        break;
+      case 'REPORT':
+        if (this._robot.position) {
+          output = this._robot.position.report();
         }
+        break;
+      case '':
+        break;
+      default:
+        throw new Error('Unknown order:', type);
+    }
 
-      });
-
-      callback(output.join('\n'));
-
-    });
+    return output;
 
   }
 
