@@ -1,5 +1,22 @@
+/**
+ * A position with x, y and facing properties.
+ *
+ * @example
+ *
+ * let position = new Position(1, 2, Position.SOUTH);
+ *
+ * position.left().facing; // 'east'
+ * position.right().facing; // 'west'
+ * position.forward().y; // 1
+ *
+ */
 export default class Position {
 
+  /**
+   * @param {number} x
+   * @param {number} y
+   * @param {string} [facing='north']
+   */
   constructor(x, y, facing) {
 
     this._x = ~~x;
@@ -26,18 +43,30 @@ export default class Position {
 
   }
 
+  /** @type {number} */
   get x() {
     return this._x;
   }
 
+  /** @type {number} */
   get y() {
     return this._y;
   }
 
+  /**
+   * The direction the position is facing. One of 'north', 'east', 'south' or 'west'.
+   *
+   * @type {string}
+   */
   get facing() {
     return this._facing;
   }
 
+  /**
+   * Returns a new position that is in front of this position.
+   *
+   * @return {Position}
+   */
   forward() {
     switch (this._facing) {
       case Position.NORTH:
@@ -52,6 +81,11 @@ export default class Position {
     }
   }
 
+  /**
+   * Returns a new position at the same location with the facing rotated left.
+   *
+   * @return {Position}
+   */
   left() {
     switch (this._facing) {
       case Position.NORTH:
@@ -66,10 +100,20 @@ export default class Position {
     }
   }
 
+  /**
+   * Returns a with the position's x, y and facing like this: '2,1,NORTH'
+   *
+   * @return {string}
+   */
   report() {
     return [this._x, this._y, this._facing.toUpperCase()].join(',');
   }
 
+  /**
+   * Returns a new position at the same location with the facing rotated right.
+   *
+   * @return {Position}
+   */
   right() {
     switch (this._facing) {
       case Position.NORTH:

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/position.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/position.js~Position.html">Position</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/robot.js~Robot.html">Robot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/simulator.js~Simulator.html">Simulator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/table.js~Table.html">Table</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/position.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * A position with x, y and facing properties.
+ *
+ * @example
+ *
+ * let position = new Position(1, 2, Position.SOUTH);
+ *
+ * position.left().facing; // &apos;east&apos;
+ * position.right().facing; // &apos;west&apos;
+ * position.forward().y; // 1
+ *
+ */
+export default class Position {
+
+  /**
+   * @param {number} x
+   * @param {number} y
+   * @param {string} [facing=&apos;north&apos;]
+   */
+  constructor(x, y, facing) {
+
+    this._x = ~~x;
+    this._y = ~~y;
+
+    facing = facing || Position.NORTH;
+
+    switch (facing.toLowerCase()) {
+      case Position.NORTH:
+        this._facing = Position.NORTH;
+        break;
+      case Position.EAST:
+        this._facing = Position.EAST;
+        break;
+      case Position.SOUTH:
+        this._facing = Position.SOUTH;
+        break;
+      case Position.WEST:
+        this._facing = Position.WEST;
+        break;
+      default:
+        throw new Error(`Unknown facing &apos;${facing}&apos;`);
+    }
+
+  }
+
+  /** @type {number} */
+  get x() {
+    return this._x;
+  }
+
+  /** @type {number} */
+  get y() {
+    return this._y;
+  }
+
+  /**
+   * The direction the position is facing. One of &apos;north&apos;, &apos;east&apos;, &apos;south&apos; or &apos;west&apos;.
+   *
+   * @type {string}
+   */
+  get facing() {
+    return this._facing;
+  }
+
+  /**
+   * Returns a new position that is in front of this position.
+   *
+   * @return {Position}
+   */
+  forward() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y + 1, this._facing);
+      case Position.EAST:
+        return new Position(this._x + 1, this._y, this._facing);
+      case Position.SOUTH:
+        return new Position(this._x, this._y - 1, this._facing);
+      case Position.WEST:
+        return new Position(this._x - 1, this._y, this._facing);
+      default:
+    }
+  }
+
+  /**
+   * Returns a new position at the same location with the facing rotated left.
+   *
+   * @return {Position}
+   */
+  left() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y, Position.WEST);
+      case Position.EAST:
+        return new Position(this._x, this._y, Position.NORTH);
+      case Position.SOUTH:
+        return new Position(this._x, this._y, Position.EAST);
+      case Position.WEST:
+        return new Position(this._x, this._y, Position.SOUTH);
+      default:
+    }
+  }
+
+  /**
+   * Returns a with the position&apos;s x, y and facing like this: &apos;2,1,NORTH&apos;
+   *
+   * @return {string}
+   */
+  report() {
+    return [this._x, this._y, this._facing.toUpperCase()].join(&apos;,&apos;);
+  }
+
+  /**
+   * Returns a new position at the same location with the facing rotated right.
+   *
+   * @return {Position}
+   */
+  right() {
+    switch (this._facing) {
+      case Position.NORTH:
+        return new Position(this._x, this._y, Position.EAST);
+      case Position.EAST:
+        return new Position(this._x, this._y, Position.SOUTH);
+      case Position.SOUTH:
+        return new Position(this._x, this._y, Position.WEST);
+      case Position.WEST:
+        return new Position(this._x, this._y, Position.NORTH);
+      default:
+    }
+  }
+
+}
+
+Position.NORTH = &apos;north&apos;;
+Position.EAST = &apos;east&apos;;
+Position.SOUTH = &apos;south&apos;;
+Position.WEST = &apos;west&apos;;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

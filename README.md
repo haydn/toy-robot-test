@@ -36,3 +36,11 @@ You can run the tests like this:
 ```
 npm test
 ```
+
+## Documentation
+
+You can re-generate the documentation like this:
+
+```
+npm run docs
+```

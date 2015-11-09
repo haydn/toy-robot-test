@@ -2,6 +2,20 @@ import Position from './position';
 import Robot from './robot';
 import Table from './table';
 
+/**
+ * Simulates moving a toy robot on a 5x5 table.
+ *
+ * Note: The 0,0 coordinate is in the south-west corner.
+ *
+ * @example
+ *
+ * let simulator = new Simulator();
+ *
+ * simulator.exec('PLACE 1,2,NORTH'); // ''
+ * simulator.exec('MOVE'); // ''
+ * simulator.exec('REPORT'); // '1,3,NORTH'
+ *
+ */
 export default class Simulator {
 
   constructor() {
@@ -9,6 +23,12 @@ export default class Simulator {
     this._robot = new Robot(this._table);
   }
 
+  /**
+   * Parses the given order and gives the instruction to the robot.
+   *
+   * @param {string} order - The order to execute.
+   * @return {string} - Result of the order (every order except the 'report' order returns an empty string).
+   */
   exec(order) {
 
     let [type, options] = this._parseOrder(order);
@@ -43,6 +63,17 @@ export default class Simulator {
 
   }
 
+  /**
+   * Takes an order string and returns an array of it's components.
+   *
+   * @example
+   *
+   * simulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]
+   * simulator._parseOrder('MOVE'); // ['MOVE', []]
+   *
+   * @param {string} p - The position to check. The facing information in not used.
+   * @return {boolean} - Returns true if the position is valid.
+   */
   _parseOrder(order) {
 
     order = order.trim().toUpperCase();
