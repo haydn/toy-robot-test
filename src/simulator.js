@@ -8,13 +8,11 @@ import Table from './table';
  * Note: The 0,0 coordinate is in the south-west corner.
  *
  * @example
- *
  * let simulator = new Simulator();
  *
  * simulator.exec('PLACE 1,2,NORTH'); // ''
  * simulator.exec('MOVE'); // ''
  * simulator.exec('REPORT'); // '1,3,NORTH'
- *
  */
 export default class Simulator {
 
@@ -71,8 +69,9 @@ export default class Simulator {
    * simulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]
    * simulator._parseOrder('MOVE'); // ['MOVE', []]
    *
-   * @param {string} p - The position to check. The facing information in not used.
-   * @return {boolean} - Returns true if the position is valid.
+   * @param {string} order - The order to be parsed.
+   * @return {*} - An array where the first element is a string of the order
+   * type and the second element is an array of options.
    */
   _parseOrder(order) {
 

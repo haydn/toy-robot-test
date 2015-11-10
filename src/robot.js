@@ -1,15 +1,15 @@
 /**
- * @example
+ * A robot that can be moved around a table.
  *
+ * @example
  * let table = new Table(5, 5);
  * let robot = new Robot(table);
  * let position = new Position(2, 2, Position.EAST);
  *
- * robot.place(position); // palces the robot on the table
+ * robot.place(position); // places the robot on the table
  * robot.move(); // moves the robot forward
  * robot.left(); // rotates the robot left
  * robot.right(); // rotates the robot right
- *
  */
 export default class Robot {
 
@@ -57,6 +57,7 @@ export default class Robot {
 
   /**
    * Places the robot on the table at the position given, if the position is valid.
+   * @param {Position} position - The position to attempt to place the robot at.
    */
   place(position) {
     if (this._table.isValid(position)) {

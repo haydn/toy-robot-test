@@ -2,13 +2,11 @@
  * A position with x, y and facing properties.
  *
  * @example
- *
  * let position = new Position(1, 2, Position.SOUTH);
  *
  * position.left().facing; // 'east'
  * position.right().facing; // 'west'
  * position.forward().y; // 1
- *
  */
 export default class Position {
 

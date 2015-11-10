@@ -67,7 +67,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>A robot that can be moved around a table.</p>
+</div>
 
   
 
@@ -76,12 +77,11 @@
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">
-let table = new Table(5, 5);
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let table = new Table(5, 5);
 let robot = new Robot(table);
 let position = new Position(2, 2, Position.EAST);
 
-robot.place(position); // palces the robot on the table
+robot.place(position); // places the robot on the table
 robot.move(); // moves the robot forward
 robot.left(); // rotates the robot left
 robot.right(); // rotates the robot right</code></pre>
@@ -227,7 +227,7 @@ robot.right(); // rotates the robot right</code></pre>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/robot.js~Robot.html#instance-method-place">place</a></span></span><span data-ice="signature">(position: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/robot.js~Robot.html#instance-method-place">place</a></span></span><span data-ice="signature">(position: <span><a href="class/src/position.js~Position.html">Position</a></span>)</span>
         </p>
       </div>
       <div>
@@ -472,11 +472,11 @@ robot has not been placed on the table.</p>
     
     
     
-    <span data-ice="name">place</span><span data-ice="signature">(position: <span>*</span>)</span>
+    <span data-ice="name">place</span><span data-ice="signature">(position: <span><a href="class/src/position.js~Position.html">Position</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/robot.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/robot.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
@@ -498,9 +498,10 @@ robot has not been placed on the table.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">position</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/position.js~Position.html">Position</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The position to attempt to place the robot at.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -533,7 +534,7 @@ robot has not been placed on the table.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/robot.js.html#lineNumber70">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/robot.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 

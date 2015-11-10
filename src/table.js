@@ -1,13 +1,13 @@
 /**
- * @example
+ * A table that has a fixed width and height.
  *
+ * @example
  * let table = new Table(2, 5);
- * let position  = new Position(10, 10);
+ * let position = new Position(10, 10);
  *
  * table.width; // 2
  * table.height; // 5
  * table.isValid(position); // false
- *
  */
 export default class Table {
 

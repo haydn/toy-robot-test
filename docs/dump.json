@@ -9,8 +9,8 @@
     "longname": "src/position.js",
     "access": null,
     "description": null,
-    "lineNumber": 13,
-    "content": "/**\n * A position with x, y and facing properties.\n *\n * @example\n *\n * let position = new Position(1, 2, Position.SOUTH);\n *\n * position.left().facing; // 'east'\n * position.right().facing; // 'west'\n * position.forward().y; // 1\n *\n */\nexport default class Position {\n\n  /**\n   * @param {number} x\n   * @param {number} y\n   * @param {string} [facing='north']\n   */\n  constructor(x, y, facing) {\n\n    this._x = ~~x;\n    this._y = ~~y;\n\n    facing = facing || Position.NORTH;\n\n    switch (facing.toLowerCase()) {\n      case Position.NORTH:\n        this._facing = Position.NORTH;\n        break;\n      case Position.EAST:\n        this._facing = Position.EAST;\n        break;\n      case Position.SOUTH:\n        this._facing = Position.SOUTH;\n        break;\n      case Position.WEST:\n        this._facing = Position.WEST;\n        break;\n      default:\n        throw new Error(`Unknown facing '${facing}'`);\n    }\n\n  }\n\n  /** @type {number} */\n  get x() {\n    return this._x;\n  }\n\n  /** @type {number} */\n  get y() {\n    return this._y;\n  }\n\n  /**\n   * The direction the position is facing. One of 'north', 'east', 'south' or 'west'.\n   *\n   * @type {string}\n   */\n  get facing() {\n    return this._facing;\n  }\n\n  /**\n   * Returns a new position that is in front of this position.\n   *\n   * @return {Position}\n   */\n  forward() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y + 1, this._facing);\n      case Position.EAST:\n        return new Position(this._x + 1, this._y, this._facing);\n      case Position.SOUTH:\n        return new Position(this._x, this._y - 1, this._facing);\n      case Position.WEST:\n        return new Position(this._x - 1, this._y, this._facing);\n      default:\n    }\n  }\n\n  /**\n   * Returns a new position at the same location with the facing rotated left.\n   *\n   * @return {Position}\n   */\n  left() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y, Position.WEST);\n      case Position.EAST:\n        return new Position(this._x, this._y, Position.NORTH);\n      case Position.SOUTH:\n        return new Position(this._x, this._y, Position.EAST);\n      case Position.WEST:\n        return new Position(this._x, this._y, Position.SOUTH);\n      default:\n    }\n  }\n\n  /**\n   * Returns a with the position's x, y and facing like this: '2,1,NORTH'\n   *\n   * @return {string}\n   */\n  report() {\n    return [this._x, this._y, this._facing.toUpperCase()].join(',');\n  }\n\n  /**\n   * Returns a new position at the same location with the facing rotated right.\n   *\n   * @return {Position}\n   */\n  right() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y, Position.EAST);\n      case Position.EAST:\n        return new Position(this._x, this._y, Position.SOUTH);\n      case Position.SOUTH:\n        return new Position(this._x, this._y, Position.WEST);\n      case Position.WEST:\n        return new Position(this._x, this._y, Position.NORTH);\n      default:\n    }\n  }\n\n}\n\nPosition.NORTH = 'north';\nPosition.EAST = 'east';\nPosition.SOUTH = 'south';\nPosition.WEST = 'west';\n"
+    "lineNumber": 11,
+    "content": "/**\n * A position with x, y and facing properties.\n *\n * @example\n * let position = new Position(1, 2, Position.SOUTH);\n *\n * position.left().facing; // 'east'\n * position.right().facing; // 'west'\n * position.forward().y; // 1\n */\nexport default class Position {\n\n  /**\n   * @param {number} x\n   * @param {number} y\n   * @param {string} [facing='north']\n   */\n  constructor(x, y, facing) {\n\n    this._x = ~~x;\n    this._y = ~~y;\n\n    facing = facing || Position.NORTH;\n\n    switch (facing.toLowerCase()) {\n      case Position.NORTH:\n        this._facing = Position.NORTH;\n        break;\n      case Position.EAST:\n        this._facing = Position.EAST;\n        break;\n      case Position.SOUTH:\n        this._facing = Position.SOUTH;\n        break;\n      case Position.WEST:\n        this._facing = Position.WEST;\n        break;\n      default:\n        throw new Error(`Unknown facing '${facing}'`);\n    }\n\n  }\n\n  /** @type {number} */\n  get x() {\n    return this._x;\n  }\n\n  /** @type {number} */\n  get y() {\n    return this._y;\n  }\n\n  /**\n   * The direction the position is facing. One of 'north', 'east', 'south' or 'west'.\n   *\n   * @type {string}\n   */\n  get facing() {\n    return this._facing;\n  }\n\n  /**\n   * Returns a new position that is in front of this position.\n   *\n   * @return {Position}\n   */\n  forward() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y + 1, this._facing);\n      case Position.EAST:\n        return new Position(this._x + 1, this._y, this._facing);\n      case Position.SOUTH:\n        return new Position(this._x, this._y - 1, this._facing);\n      case Position.WEST:\n        return new Position(this._x - 1, this._y, this._facing);\n      default:\n    }\n  }\n\n  /**\n   * Returns a new position at the same location with the facing rotated left.\n   *\n   * @return {Position}\n   */\n  left() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y, Position.WEST);\n      case Position.EAST:\n        return new Position(this._x, this._y, Position.NORTH);\n      case Position.SOUTH:\n        return new Position(this._x, this._y, Position.EAST);\n      case Position.WEST:\n        return new Position(this._x, this._y, Position.SOUTH);\n      default:\n    }\n  }\n\n  /**\n   * Returns a with the position's x, y and facing like this: '2,1,NORTH'\n   *\n   * @return {string}\n   */\n  report() {\n    return [this._x, this._y, this._facing.toUpperCase()].join(',');\n  }\n\n  /**\n   * Returns a new position at the same location with the facing rotated right.\n   *\n   * @return {Position}\n   */\n  right() {\n    switch (this._facing) {\n      case Position.NORTH:\n        return new Position(this._x, this._y, Position.EAST);\n      case Position.EAST:\n        return new Position(this._x, this._y, Position.SOUTH);\n      case Position.SOUTH:\n        return new Position(this._x, this._y, Position.WEST);\n      case Position.WEST:\n        return new Position(this._x, this._y, Position.NORTH);\n      default:\n    }\n  }\n\n}\n\nPosition.NORTH = 'north';\nPosition.EAST = 'east';\nPosition.SOUTH = 'south';\nPosition.WEST = 'west';\n"
   },
   {
     "__docId__": 1,
@@ -26,9 +26,9 @@
     "importStyle": "Position",
     "description": "A position with x, y and facing properties.",
     "examples": [
-      "\nlet position = new Position(1, 2, Position.SOUTH);\n\nposition.left().facing; // 'east'\nposition.right().facing; // 'west'\nposition.forward().y; // 1"
+      "let position = new Position(1, 2, Position.SOUTH);\n\nposition.left().facing; // 'east'\nposition.right().facing; // 'west'\nposition.forward().y; // 1"
     ],
-    "lineNumber": 13,
+    "lineNumber": 11,
     "interface": false
   },
   {
@@ -41,7 +41,7 @@
     "longname": "src/position.js~Position#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 18,
     "params": [
       {
         "nullable": null,
@@ -88,7 +88,7 @@
     "longname": "src/position.js~Position#_x",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 20,
     "undocument": true,
     "type": {
       "types": [
@@ -106,7 +106,7 @@
     "longname": "src/position.js~Position#_y",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -124,7 +124,7 @@
     "longname": "src/position.js~Position#_facing",
     "access": null,
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -142,7 +142,7 @@
     "longname": "src/position.js~Position#_facing",
     "access": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 30,
     "undocument": true,
     "type": {
       "types": [
@@ -160,7 +160,7 @@
     "longname": "src/position.js~Position#_facing",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -178,7 +178,7 @@
     "longname": "src/position.js~Position#_facing",
     "access": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 36,
     "undocument": true,
     "type": {
       "types": [
@@ -196,7 +196,7 @@
     "longname": "src/position.js~Position#x",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 45,
     "type": {
       "nullable": null,
       "types": [
@@ -217,7 +217,7 @@
     "longname": "src/position.js~Position#y",
     "access": null,
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 50,
     "type": {
       "nullable": null,
       "types": [
@@ -238,7 +238,7 @@
     "longname": "src/position.js~Position#facing",
     "access": null,
     "description": "The direction the position is facing. One of 'north', 'east', 'south' or 'west'.",
-    "lineNumber": 61,
+    "lineNumber": 59,
     "type": {
       "nullable": null,
       "types": [
@@ -259,7 +259,7 @@
     "longname": "src/position.js~Position#forward",
     "access": null,
     "description": "Returns a new position that is in front of this position.",
-    "lineNumber": 70,
+    "lineNumber": 68,
     "params": [],
     "return": {
       "nullable": null,
@@ -281,7 +281,7 @@
     "longname": "src/position.js~Position#left",
     "access": null,
     "description": "Returns a new position at the same location with the facing rotated left.",
-    "lineNumber": 89,
+    "lineNumber": 87,
     "params": [],
     "return": {
       "nullable": null,
@@ -303,7 +303,7 @@
     "longname": "src/position.js~Position#report",
     "access": null,
     "description": "Returns a with the position's x, y and facing like this: '2,1,NORTH'",
-    "lineNumber": 108,
+    "lineNumber": 106,
     "params": [],
     "return": {
       "nullable": null,
@@ -325,7 +325,7 @@
     "longname": "src/position.js~Position#right",
     "access": null,
     "description": "Returns a new position at the same location with the facing rotated right.",
-    "lineNumber": 117,
+    "lineNumber": 115,
     "params": [],
     "return": {
       "nullable": null,
@@ -348,7 +348,7 @@
     "access": null,
     "description": null,
     "lineNumber": 14,
-    "content": "/**\n * @example\n *\n * let table = new Table(5, 5);\n * let robot = new Robot(table);\n * let position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // palces the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n *\n */\nexport default class Robot {\n\n  constructor(table) {\n    this._table = table;\n    this._position = null;\n  }\n\n  /**\n   * The current position of the robot. If the robot has not been placed on the\n   * table this will be null.\n   *\n   * @type {Position}\n   */\n  get position() {\n    return this._position;\n  }\n\n  /**\n   * Rotates the robot left. Ignored if the robot has not been placed on the table.\n   */\n  left() {\n    if (this._position) {\n      this._position = this._position.left();\n    }\n  }\n\n  /**\n   * Moves the robot forward if the position in front is valid. Ignored if the\n   * robot has not been placed on the table.\n   */\n  move() {\n\n    if (this._position) {\n\n      let newPosition = this._position.forward();\n\n      if (this._table.isValid(newPosition)) {\n        this._position = newPosition;\n      }\n\n    }\n\n  }\n\n  /**\n   * Places the robot on the table at the position given, if the position is valid.\n   */\n  place(position) {\n    if (this._table.isValid(position)) {\n      this._position = position;\n    }\n  }\n\n  /**\n   * Rotates the robot right. Ignored if the robot has not been placed on the table.\n   */\n  right() {\n    if (this._position) {\n      this._position = this._position.right();\n    }\n  }\n\n}\n"
+    "content": "/**\n * A robot that can be moved around a table.\n *\n * @example\n * let table = new Table(5, 5);\n * let robot = new Robot(table);\n * let position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n */\nexport default class Robot {\n\n  constructor(table) {\n    this._table = table;\n    this._position = null;\n  }\n\n  /**\n   * The current position of the robot. If the robot has not been placed on the\n   * table this will be null.\n   *\n   * @type {Position}\n   */\n  get position() {\n    return this._position;\n  }\n\n  /**\n   * Rotates the robot left. Ignored if the robot has not been placed on the table.\n   */\n  left() {\n    if (this._position) {\n      this._position = this._position.left();\n    }\n  }\n\n  /**\n   * Moves the robot forward if the position in front is valid. Ignored if the\n   * robot has not been placed on the table.\n   */\n  move() {\n\n    if (this._position) {\n\n      let newPosition = this._position.forward();\n\n      if (this._table.isValid(newPosition)) {\n        this._position = newPosition;\n      }\n\n    }\n\n  }\n\n  /**\n   * Places the robot on the table at the position given, if the position is valid.\n   * @param {Position} position - The position to attempt to place the robot at.\n   */\n  place(position) {\n    if (this._table.isValid(position)) {\n      this._position = position;\n    }\n  }\n\n  /**\n   * Rotates the robot right. Ignored if the robot has not been placed on the table.\n   */\n  right() {\n    if (this._position) {\n      this._position = this._position.right();\n    }\n  }\n\n}\n"
   },
   {
     "__docId__": 17,
@@ -362,9 +362,9 @@
     "export": true,
     "importPath": "./src/robot.js",
     "importStyle": "Robot",
-    "description": null,
+    "description": "A robot that can be moved around a table.",
     "examples": [
-      "\nlet table = new Table(5, 5);\nlet robot = new Robot(table);\nlet position = new Position(2, 2, Position.EAST);\n\nrobot.place(position); // palces the robot on the table\nrobot.move(); // moves the robot forward\nrobot.left(); // rotates the robot left\nrobot.right(); // rotates the robot right"
+      "let table = new Table(5, 5);\nlet robot = new Robot(table);\nlet position = new Position(2, 2, Position.EAST);\n\nrobot.place(position); // places the robot on the table\nrobot.move(); // moves the robot forward\nrobot.left(); // rotates the robot left\nrobot.right(); // rotates the robot right"
     ],
     "lineNumber": 14,
     "interface": false
@@ -522,13 +522,17 @@
     "longname": "src/robot.js~Robot#place",
     "access": null,
     "description": "Places the robot on the table at the position given, if the position is valid.",
-    "lineNumber": 61,
+    "lineNumber": 62,
     "params": [
       {
-        "name": "position",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Position"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "position",
+        "description": "The position to attempt to place the robot at."
       }
     ],
     "generator": false
@@ -543,7 +547,7 @@
     "longname": "src/robot.js~Robot#_position",
     "access": null,
     "description": null,
-    "lineNumber": 63,
+    "lineNumber": 64,
     "undocument": true,
     "type": {
       "types": [
@@ -561,7 +565,7 @@
     "longname": "src/robot.js~Robot#right",
     "access": null,
     "description": "Rotates the robot right. Ignored if the robot has not been placed on the table.",
-    "lineNumber": 70,
+    "lineNumber": 71,
     "params": [],
     "generator": false
   },
@@ -575,7 +579,7 @@
     "longname": "src/robot.js~Robot#_position",
     "access": null,
     "description": null,
-    "lineNumber": 72,
+    "lineNumber": 73,
     "undocument": true,
     "type": {
       "types": [
@@ -594,7 +598,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Position from './position';\nimport Robot from './robot';\nimport Table from './table';\n\n/**\n * Simulates moving a toy robot on a 5x5 table.\n *\n * Note: The 0,0 coordinate is in the south-west corner.\n *\n * @example\n *\n * let simulator = new Simulator();\n *\n * simulator.exec('PLACE 1,2,NORTH'); // ''\n * simulator.exec('MOVE'); // ''\n * simulator.exec('REPORT'); // '1,3,NORTH'\n *\n */\nexport default class Simulator {\n\n  constructor() {\n    this._table = new Table(5, 5);\n    this._robot = new Robot(this._table);\n  }\n\n  /**\n   * Parses the given order and gives the instruction to the robot.\n   *\n   * @param {string} order - The order to execute.\n   * @return {string} - Result of the order (every order except the 'report' order returns an empty string).\n   */\n  exec(order) {\n\n    let [type, options] = this._parseOrder(order);\n    let output = '';\n\n    switch (type) {\n      case 'PLACE':\n        let [x, y, facing] = options;\n        this._robot.place(new Position(x, y, facing));\n        break;\n      case 'MOVE':\n        this._robot.move();\n        break;\n      case 'LEFT':\n        this._robot.left();\n        break;\n      case 'RIGHT':\n        this._robot.right();\n        break;\n      case 'REPORT':\n        if (this._robot.position) {\n          output = this._robot.position.report();\n        }\n        break;\n      case '':\n        break;\n      default:\n        throw new Error('Unknown order:', type);\n    }\n\n    return output;\n\n  }\n\n  /**\n   * Takes an order string and returns an array of it's components.\n   *\n   * @example\n   *\n   * simulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]\n   * simulator._parseOrder('MOVE'); // ['MOVE', []]\n   *\n   * @param {string} p - The position to check. The facing information in not used.\n   * @return {boolean} - Returns true if the position is valid.\n   */\n  _parseOrder(order) {\n\n    order = order.trim().toUpperCase();\n\n    let index = order.indexOf(' ');\n\n    if (index === -1) {\n      return [\n        order,\n        []\n      ];\n    } else {\n      return [\n        order.slice(0, index).trim(),\n        order.slice(index).trim().split(',').map(x => x.trim())\n      ];\n    }\n\n  }\n\n}\n"
+    "content": "import Position from './position';\nimport Robot from './robot';\nimport Table from './table';\n\n/**\n * Simulates moving a toy robot on a 5x5 table.\n *\n * Note: The 0,0 coordinate is in the south-west corner.\n *\n * @example\n * let simulator = new Simulator();\n *\n * simulator.exec('PLACE 1,2,NORTH'); // ''\n * simulator.exec('MOVE'); // ''\n * simulator.exec('REPORT'); // '1,3,NORTH'\n */\nexport default class Simulator {\n\n  constructor() {\n    this._table = new Table(5, 5);\n    this._robot = new Robot(this._table);\n  }\n\n  /**\n   * Parses the given order and gives the instruction to the robot.\n   *\n   * @param {string} order - The order to execute.\n   * @return {string} - Result of the order (every order except the 'report' order returns an empty string).\n   */\n  exec(order) {\n\n    let [type, options] = this._parseOrder(order);\n    let output = '';\n\n    switch (type) {\n      case 'PLACE':\n        let [x, y, facing] = options;\n        this._robot.place(new Position(x, y, facing));\n        break;\n      case 'MOVE':\n        this._robot.move();\n        break;\n      case 'LEFT':\n        this._robot.left();\n        break;\n      case 'RIGHT':\n        this._robot.right();\n        break;\n      case 'REPORT':\n        if (this._robot.position) {\n          output = this._robot.position.report();\n        }\n        break;\n      case '':\n        break;\n      default:\n        throw new Error('Unknown order:', type);\n    }\n\n    return output;\n\n  }\n\n  /**\n   * Takes an order string and returns an array of it's components.\n   *\n   * @example\n   *\n   * simulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]\n   * simulator._parseOrder('MOVE'); // ['MOVE', []]\n   *\n   * @param {string} order - The order to be parsed.\n   * @return {*} - An array where the first element is a string of the order\n   * type and the second element is an array of options.\n   */\n  _parseOrder(order) {\n\n    order = order.trim().toUpperCase();\n\n    let index = order.indexOf(' ');\n\n    if (index === -1) {\n      return [\n        order,\n        []\n      ];\n    } else {\n      return [\n        order.slice(0, index).trim(),\n        order.slice(index).trim().split(',').map(x => x.trim())\n      ];\n    }\n\n  }\n\n}\n"
   },
   {
     "__docId__": 31,
@@ -610,9 +614,9 @@
     "importStyle": "Simulator",
     "description": "Simulates moving a toy robot on a 5x5 table.\n\nNote: The 0,0 coordinate is in the south-west corner.",
     "examples": [
-      "\nlet simulator = new Simulator();\n\nsimulator.exec('PLACE 1,2,NORTH'); // ''\nsimulator.exec('MOVE'); // ''\nsimulator.exec('REPORT'); // '1,3,NORTH'"
+      "let simulator = new Simulator();\n\nsimulator.exec('PLACE 1,2,NORTH'); // ''\nsimulator.exec('MOVE'); // ''\nsimulator.exec('REPORT'); // '1,3,NORTH'"
     ],
-    "lineNumber": 19,
+    "lineNumber": 17,
     "interface": false
   },
   {
@@ -625,7 +629,7 @@
     "longname": "src/simulator.js~Simulator#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 19,
     "undocument": true,
     "params": [],
     "generator": false
@@ -640,7 +644,7 @@
     "longname": "src/simulator.js~Simulator#_table",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 20,
     "undocument": true,
     "type": {
       "types": [
@@ -658,7 +662,7 @@
     "longname": "src/simulator.js~Simulator#_robot",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -676,7 +680,7 @@
     "longname": "src/simulator.js~Simulator#exec",
     "access": null,
     "description": "Parses the given order and gives the instruction to the robot.",
-    "lineNumber": 32,
+    "lineNumber": 30,
     "params": [
       {
         "nullable": null,
@@ -712,7 +716,7 @@
     "examples": [
       "\nsimulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]\nsimulator._parseOrder('MOVE'); // ['MOVE', []]"
     ],
-    "lineNumber": 77,
+    "lineNumber": 76,
     "params": [
       {
         "nullable": null,
@@ -721,17 +725,17 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "p",
-        "description": "The position to check. The facing information in not used."
+        "name": "order",
+        "description": "The order to be parsed."
       }
     ],
     "return": {
       "nullable": null,
       "types": [
-        "boolean"
+        "*"
       ],
       "spread": false,
-      "description": "Returns true if the position is valid."
+      "description": "An array where the first element is a string of the order\ntype and the second element is an array of options."
     },
     "generator": false
   },
@@ -746,7 +750,7 @@
     "access": null,
     "description": null,
     "lineNumber": 12,
-    "content": "/**\n * @example\n *\n * let table = new Table(2, 5);\n * let position  = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n *\n */\nexport default class Table {\n\n  /**\n   * @param {number} width\n   * @param {number} height\n   */\n  constructor(width, height) {\n\n    if (arguments.length < 2) {\n      throw new Error('You must provide and width and height.');\n    }\n\n    width = ~~width;\n    height = ~~height;\n\n    if (width <= 0) {\n      throw new Error('The width must be greater than 0.');\n    }\n\n    if (height <= 0) {\n      throw new Error('The height must be greater than 0.');\n    }\n\n    this._width = ~~width;\n    this._height = ~~height;\n\n  }\n\n  /** @type {number} */\n  get height() {\n    return this._height;\n  }\n\n  /** @type {number} */\n  get width() {\n    return this._width;\n  }\n\n  /**\n   * Checks if the given position is within the bounds of the table and a valid\n   * location to place an object.\n   *\n   * @param {Position} p - The position to check. The facing information in not used.\n   * @return {boolean} - Returns true if the position is valid.\n   */\n  isValid(p) {\n    return p.x >= 0 && p.x < this._width && p.y >= 0 && p.y < this._height;\n  }\n\n}\n"
+    "content": "/**\n * A table that has a fixed width and height.\n *\n * @example\n * let table = new Table(2, 5);\n * let position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n */\nexport default class Table {\n\n  /**\n   * @param {number} width\n   * @param {number} height\n   */\n  constructor(width, height) {\n\n    if (arguments.length < 2) {\n      throw new Error('You must provide and width and height.');\n    }\n\n    width = ~~width;\n    height = ~~height;\n\n    if (width <= 0) {\n      throw new Error('The width must be greater than 0.');\n    }\n\n    if (height <= 0) {\n      throw new Error('The height must be greater than 0.');\n    }\n\n    this._width = ~~width;\n    this._height = ~~height;\n\n  }\n\n  /** @type {number} */\n  get height() {\n    return this._height;\n  }\n\n  /** @type {number} */\n  get width() {\n    return this._width;\n  }\n\n  /**\n   * Checks if the given position is within the bounds of the table and a valid\n   * location to place an object.\n   *\n   * @param {Position} p - The position to check. The facing information in not used.\n   * @return {boolean} - Returns true if the position is valid.\n   */\n  isValid(p) {\n    return p.x >= 0 && p.x < this._width && p.y >= 0 && p.y < this._height;\n  }\n\n}\n"
   },
   {
     "__docId__": 38,
@@ -760,9 +764,9 @@
     "export": true,
     "importPath": "./src/table.js",
     "importStyle": "Table",
-    "description": null,
+    "description": "A table that has a fixed width and height.",
     "examples": [
-      "\nlet table = new Table(2, 5);\nlet position  = new Position(10, 10);\n\ntable.width; // 2\ntable.height; // 5\ntable.isValid(position); // false"
+      "let table = new Table(2, 5);\nlet position = new Position(10, 10);\n\ntable.width; // 2\ntable.height; // 5\ntable.isValid(position); // false"
     ],
     "lineNumber": 12,
     "interface": false

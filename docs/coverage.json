@@ -19,7 +19,7 @@
       "expectCount": 3,
       "actualCount": 2,
       "undocumentLines": [
-        21
+        19
       ]
     },
     "src/table.js": {

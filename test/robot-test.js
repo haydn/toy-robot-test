@@ -3,7 +3,7 @@ import Position from '../src/position';
 import Robot from '../src/robot';
 import Table from '../src/table';
 
-test('Robot have a position property that is null by default and a position after being placed', t => {
+test('Robot must have a position property that is null by default and a position after being placed', t => {
 
   let table = new Table(3, 3);
   let robot = new Robot(table);
@@ -84,6 +84,19 @@ test('Robot#move must move the robot unless the new position is invalid', t => {
 
 });
 
+test("Robot#move most do nothing if the robot doesn't have a position", t => {
+
+  let table = new Table(3, 3);
+  let robot = new Robot(table);
+
+  t.plan(1);
+
+  t.doesNotThrow(() => {
+    robot.move();
+  });
+
+});
+
 test('Robot#place must be ignored if the given position is not valid', t => {
 
   let table = new Table(3, 3);
@@ -106,19 +119,6 @@ test('Robot#place must be ignored if the given position is not valid', t => {
 
   t.equals(robot.position.x, 1);
   t.equals(robot.position.y, 1);
-
-});
-
-test("Robot#move most do nothing if the robot doesn't have a position", t => {
-
-  let table = new Table(3, 3);
-  let robot = new Robot(table);
-
-  t.plan(1);
-
-  t.doesNotThrow(() => {
-    robot.move();
-  });
 
 });
 
