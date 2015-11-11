@@ -45,13 +45,29 @@
  * A position with x, y and facing properties.
  *
  * @example
- * let position = new Position(1, 2, Position.SOUTH);
+ * var position = new Position(1, 2, Position.SOUTH);
  *
  * position.left().facing; // &apos;east&apos;
  * position.right().facing; // &apos;west&apos;
  * position.forward().y; // 1
  */
 export default class Position {
+
+  static get NORTH() {
+    return &apos;north&apos;;
+  }
+
+  static get EAST() {
+    return &apos;east&apos;;
+  }
+
+  static get SOUTH() {
+    return &apos;south&apos;;
+  }
+
+  static get WEST() {
+    return &apos;west&apos;;
+  }
 
   /**
    * @param {number} x
@@ -170,11 +186,6 @@ export default class Position {
   }
 
 }
-
-Position.NORTH = &apos;north&apos;;
-Position.EAST = &apos;east&apos;;
-Position.SOUTH = &apos;south&apos;;
-Position.WEST = &apos;west&apos;;
 </code></pre>
 
 </div>

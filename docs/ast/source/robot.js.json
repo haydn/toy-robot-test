@@ -2409,7 +2409,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * let table = new Table(5, 5);\n * let robot = new Robot(table);\n * let position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
+            "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * var table = new Table(5, 5);\n * var robot = new Robot(table);\n * var position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
             "range": [
               0,
               379
@@ -2445,7 +2445,7 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * let table = new Table(5, 5);\n * let robot = new Robot(table);\n * let position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
+          "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * var table = new Table(5, 5);\n * var robot = new Robot(table);\n * var position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
           "range": [
             0,
             379
@@ -2482,7 +2482,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * let table = new Table(5, 5);\n * let robot = new Robot(table);\n * let position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
+      "value": "*\n * A robot that can be moved around a table.\n *\n * @example\n * var table = new Table(5, 5);\n * var robot = new Robot(table);\n * var position = new Position(2, 2, Position.EAST);\n *\n * robot.place(position); // places the robot on the table\n * robot.move(); // moves the robot forward\n * robot.left(); // rotates the robot left\n * robot.right(); // rotates the robot right\n ",
       "range": [
         0,
         379

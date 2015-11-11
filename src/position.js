@@ -2,13 +2,29 @@
  * A position with x, y and facing properties.
  *
  * @example
- * let position = new Position(1, 2, Position.SOUTH);
+ * var position = new Position(1, 2, Position.SOUTH);
  *
  * position.left().facing; // 'east'
  * position.right().facing; // 'west'
  * position.forward().y; // 1
  */
 export default class Position {
+
+  static get NORTH() {
+    return 'north';
+  }
+
+  static get EAST() {
+    return 'east';
+  }
+
+  static get SOUTH() {
+    return 'south';
+  }
+
+  static get WEST() {
+    return 'west';
+  }
 
   /**
    * @param {number} x
@@ -127,8 +143,3 @@ export default class Position {
   }
 
 }
-
-Position.NORTH = 'north';
-Position.EAST = 'east';
-Position.SOUTH = 'south';
-Position.WEST = 'west';

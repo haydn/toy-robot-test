@@ -360,6 +360,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/position.js~position#_facing",
+    "class/src/position.js~Position.html#instance-member-_facing",
+    "src/position.js~Position#_facing",
+    "member"
+  ],
+  [
+    "src/position.js~position#_x",
+    "class/src/position.js~Position.html#instance-member-_x",
+    "src/position.js~Position#_x",
+    "member"
+  ],
+  [
+    "src/position.js~position#_y",
+    "class/src/position.js~Position.html#instance-member-_y",
+    "src/position.js~Position#_y",
+    "member"
+  ],
+  [
     "src/position.js~position#constructor",
     "class/src/position.js~Position.html#instance-constructor-constructor",
     "src/position.js~Position#constructor",
@@ -408,10 +426,46 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/position.js~position.east",
+    "class/src/position.js~Position.html#static-get-EAST",
+    "src/position.js~Position.EAST",
+    "member"
+  ],
+  [
+    "src/position.js~position.north",
+    "class/src/position.js~Position.html#static-get-NORTH",
+    "src/position.js~Position.NORTH",
+    "member"
+  ],
+  [
+    "src/position.js~position.south",
+    "class/src/position.js~Position.html#static-get-SOUTH",
+    "src/position.js~Position.SOUTH",
+    "member"
+  ],
+  [
+    "src/position.js~position.west",
+    "class/src/position.js~Position.html#static-get-WEST",
+    "src/position.js~Position.WEST",
+    "member"
+  ],
+  [
     "src/robot.js",
     "file/src/robot.js.html",
     "src/robot.js",
     "file"
+  ],
+  [
+    "src/robot.js~robot#_position",
+    "class/src/robot.js~Robot.html#instance-member-_position",
+    "src/robot.js~Robot#_position",
+    "member"
+  ],
+  [
+    "src/robot.js~robot#_table",
+    "class/src/robot.js~Robot.html#instance-member-_table",
+    "src/robot.js~Robot#_table",
+    "member"
   ],
   [
     "src/robot.js~robot#constructor",
@@ -456,6 +510,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/simulator.js~simulator#_parseorder",
+    "class/src/simulator.js~Simulator.html#instance-method-_parseOrder",
+    "src/simulator.js~Simulator#_parseOrder",
+    "method"
+  ],
+  [
+    "src/simulator.js~simulator#_robot",
+    "class/src/simulator.js~Simulator.html#instance-member-_robot",
+    "src/simulator.js~Simulator#_robot",
+    "member"
+  ],
+  [
+    "src/simulator.js~simulator#_table",
+    "class/src/simulator.js~Simulator.html#instance-member-_table",
+    "src/simulator.js~Simulator#_table",
+    "member"
+  ],
+  [
     "src/simulator.js~simulator#constructor",
     "class/src/simulator.js~Simulator.html#instance-constructor-constructor",
     "src/simulator.js~Simulator#constructor",
@@ -472,6 +544,18 @@ window.esdocSearchIndex = [
     "file/src/table.js.html",
     "src/table.js",
     "file"
+  ],
+  [
+    "src/table.js~table#_height",
+    "class/src/table.js~Table.html#instance-member-_height",
+    "src/table.js~Table#_height",
+    "member"
+  ],
+  [
+    "src/table.js~table#_width",
+    "class/src/table.js~Table.html#instance-member-_width",
+    "src/table.js~Table#_width",
+    "member"
   ],
   [
     "src/table.js~table#constructor",

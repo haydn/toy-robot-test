@@ -51,7 +51,7 @@ import Table from &apos;./table&apos;;
  * Note: The 0,0 coordinate is in the south-west corner.
  *
  * @example
- * let simulator = new Simulator();
+ * var simulator = new Simulator();
  *
  * simulator.exec(&apos;PLACE 1,2,NORTH&apos;); // &apos;&apos;
  * simulator.exec(&apos;MOVE&apos;); // &apos;&apos;
@@ -72,7 +72,7 @@ export default class Simulator {
    */
   exec(order) {
 
-    let [type, options] = this._parseOrder(order);
+    let { type, options } = this._parseOrder(order);
     let output = &apos;&apos;;
 
     switch (type) {
@@ -105,16 +105,16 @@ export default class Simulator {
   }
 
   /**
-   * Takes an order string and returns an array of it&apos;s components.
+   * Takes an order string and returns an order object.
    *
    * @example
-   *
-   * simulator._parseOrder(&apos; place 2,1,NOrTH&apos;); // [&apos;PLACE&apos;, [2,1,&apos;NORTH&apos;]]
-   * simulator._parseOrder(&apos;MOVE&apos;); // [&apos;MOVE&apos;, []]
+   * simulator._parseOrder(&apos; place 2,1,NOrTH&apos;); // { type: &apos;PLACE&apos;, options: [&apos;2&apos;, &apos;1&apos;, &apos;NORTH&apos;] }
+   * simulator._parseOrder(&apos;MOVE&apos;); // { type: &apos;MOVE&apos;, options: [] }
    *
    * @param {string} order - The order to be parsed.
-   * @return {*} - An array where the first element is a string of the order
-   * type and the second element is an array of options.
+   * @return {Object} The parsed order.
+   * @property {string} type - The order type.
+   * @property {string[]} options - Options for the order.
    */
   _parseOrder(order) {
 
@@ -123,15 +123,15 @@ export default class Simulator {
     let index = order.indexOf(&apos; &apos;);
 
     if (index === -1) {
-      return [
-        order,
-        []
-      ];
+      return {
+        type: order,
+        options: []
+      };
     } else {
-      return [
-        order.slice(0, index).trim(),
-        order.slice(index).trim().split(&apos;,&apos;).map(x =&gt; x.trim())
-      ];
+      return {
+        type: order.slice(0, index).trim(),
+        options: order.slice(index).trim().split(&apos;,&apos;).map(x =&gt; x.trim())
+      };
     }
 
   }

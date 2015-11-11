@@ -2248,7 +2248,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * let table = new Table(2, 5);\n * let position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
+            "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * var table = new Table(2, 5);\n * var position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
             "range": [
               0,
               223
@@ -2284,7 +2284,7 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * let table = new Table(2, 5);\n * let position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
+          "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * var table = new Table(2, 5);\n * var position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
           "range": [
             0,
             223
@@ -2321,7 +2321,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * let table = new Table(2, 5);\n * let position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
+      "value": "*\n * A table that has a fixed width and height.\n *\n * @example\n * var table = new Table(2, 5);\n * var position = new Position(10, 10);\n *\n * table.width; // 2\n * table.height; // 5\n * table.isValid(position); // false\n ",
       "range": [
         0,
         223

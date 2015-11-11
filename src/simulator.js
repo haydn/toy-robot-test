@@ -8,7 +8,7 @@ import Table from './table';
  * Note: The 0,0 coordinate is in the south-west corner.
  *
  * @example
- * let simulator = new Simulator();
+ * var simulator = new Simulator();
  *
  * simulator.exec('PLACE 1,2,NORTH'); // ''
  * simulator.exec('MOVE'); // ''
