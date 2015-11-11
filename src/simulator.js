@@ -29,7 +29,7 @@ export default class Simulator {
    */
   exec(order) {
 
-    let [type, options] = this._parseOrder(order);
+    let { type, options } = this._parseOrder(order);
     let output = '';
 
     switch (type) {
@@ -62,16 +62,16 @@ export default class Simulator {
   }
 
   /**
-   * Takes an order string and returns an array of it's components.
+   * Takes an order string and returns an order object.
    *
    * @example
-   *
-   * simulator._parseOrder(' place 2,1,NOrTH'); // ['PLACE', [2,1,'NORTH']]
-   * simulator._parseOrder('MOVE'); // ['MOVE', []]
+   * simulator._parseOrder(' place 2,1,NOrTH'); // { type: 'PLACE', options: ['2', '1', 'NORTH'] }
+   * simulator._parseOrder('MOVE'); // { type: 'MOVE', options: [] }
    *
    * @param {string} order - The order to be parsed.
-   * @return {*} - An array where the first element is a string of the order
-   * type and the second element is an array of options.
+   * @return {Object} The parsed order.
+   * @property {string} type - The order type.
+   * @property {string[]} options - Options for the order.
    */
   _parseOrder(order) {
 
@@ -80,15 +80,15 @@ export default class Simulator {
     let index = order.indexOf(' ');
 
     if (index === -1) {
-      return [
-        order,
-        []
-      ];
+      return {
+        type: order,
+        options: []
+      };
     } else {
-      return [
-        order.slice(0, index).trim(),
-        order.slice(index).trim().split(',').map(x => x.trim())
-      ];
+      return {
+        type: order.slice(0, index).trim(),
+        options: order.slice(index).trim().split(',').map(x => x.trim())
+      };
     }
 
   }
